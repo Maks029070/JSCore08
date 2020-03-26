@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function show(data) {
+			console.log(data);
+		}
+
+		function perHourSalary(employeeName, hSalary) {
+			this.salary = hSalary;
+			this.name = employeeName;
+			this.perYearSalary = function() {
+				this.annualSalary = this.salary * 8 * 22 * 12; // 8 - кількість робочих годин за день, 22 - кількість робочих днів у місяці, 12 - кількість місяців
+			}
+			this.getPerYearSalary = function() {
+				this.perYearSalary();
+				show("Річна зарплатня робітника " + this.name + " = " + this.annualSalary);
+			}
+		}
+
+		function perMounthSalary(employeeName, mSalary) {
+			perHourSalary.call(this);
+			this.salary = mSalary;
+			this.name = employeeName;
+			this.perYearSalary = function() {
+				this.annualSalary = this.salary * 12;
+			}
+			this.getPerYearSalary = function() {
+				this.perYearSalary();
+				show("Річна зарплатня робітника " + this.name + " = " + this.annualSalary);
+			}
+		}
+
+		var employee1 = new perHourSalary("John", 30);
+		employee1.getPerYearSalary();
+
+		var employee2 = new perMounthSalary("Calvin", 5250);
+		employee2.getPerYearSalary();
+		
+	</script>
+</body>
+</html>

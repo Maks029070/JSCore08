@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function show(data) {
+			console.log(data);
+		}
+
+		function helm(hDiameter, hPrice) {
+			this.diameterOfHelm = hDiameter;
+			this.priceOfHelm = hPrice;
+			this.setHelmDiameter = function(newDiameter) {
+				this.diameterOfHelm = newDiameter;
+			}
+			this.setHelmPrice = function(newHelmPrice) {
+				this.priceOfHelm = newHelmPrice;
+			}
+			this.getHelmDiameter = function() {
+				return this.diameterOfHelm;
+			}
+		}
+
+		function wheels(wSize, wPrice) {
+			this.sizeOfWheels = wSize;
+			this.priceOfWheels = wPrice;
+			this.setWheelSize = function(newWheelSize) {
+				if (newWheelSize <= 12) {
+					show("So small wheels");
+				} if (newWheelSize >= 25) {
+					show("So big wheels");
+				} else {
+					this.sizeOfWheels = newWheelSize;
+				}
+			}
+			this.setWheelPrice = function(newWheelPrice) {
+				this.priceOfWheels = newWheelPrice;
+			}
+			this.getWheelSize = function() {
+				return this.sizeOfWheels;
+			}
+		}
+
+		function body(bQtyOfDetails, bPrice) {
+			this.qtyOfDetails = bQtyOfDetails;
+			this.priceOfBody = bPrice;
+			this.setQtyOfDetalis = function(newQtyOfDetails) {
+				this.qtyOfDetails = newQtyOfDetails;
+			}
+			this.setBodyPrice = function(newBodyPrice) {
+				this.priceOfBody = newBodyPrice;
+			}
+			this.getPrice = function() {
+				return this.priceOfBody;
+			}
+		}
+
+		function Car(cManufacturer, cModel, cYear, cPrice, cDiameterOfHelm, cHelmPrice, cWheelsSize, cWheelsPrice, cQtyOfDetails, cBodyPrice) {
+			this.carManufacturer = cManufacturer;
+			this.carModel = cModel;
+			this.carYear = cYear;
+			this.carPrice = cPrice;
+			var carHelm = new helm(cDiameterOfHelm, cHelmPrice);
+			var carWheels = new wheels(cWheelsSize, cWheelsPrice);
+			var carBody = new body(cQtyOfDetails, cBodyPrice);
+
+			this.setHelm = function(newHelmDiameter, newHelmPrice) {
+				carHelm.setHelmDiameter(newHelmDiameter);
+				carHelm.setHelmPrice(newHelmPrice);
+			}
+
+			this.setWheels = function(newWheelSize, newWheelPrice) {
+				carWheels.setWheelSize(newWheelSize);
+				carWheels.setWheelPrice(newWheelPrice);
+			}
+
+			this.setBody = function(newQtyOfDetails, newBodyPrice) {
+				carBody.setQtyOfDetalis(newQtyOfDetails);
+				carBody.setBodyPrice(newBodyPrice);
+			}
+
+			this.getInfoAboutCar = function() {
+				show("Manufacturer: " + this.carManufacturer + "; " + "Model: " + this.carModel + "; " + "Year: " + this.carYear + "; " + "Price: " + this.carPrice + "; " + "Diameter of Helm: " + carHelm.diameterOfHelm + "; " + "Price of Helm: " + carHelm.priceOfHelm + "; " + "Size of Wheels: " + carWheels.sizeOfWheels + "; " + "Price of Wheels" + carWheels.priceOfWheels + "; " + "Quantity of Details: " + carBody.qtyOfDetails + "; " + "Price of Body: " + carBody.priceOfBody + ";");
+			}
+		}
+
+		var car1 = new Car("BMW", "X5", 2012, 22350, 32, 300, 20, 1200, 557, 6300);
+		car1.setHelm(35, 420);
+		car1.setWheels(22, 1650);
+		car1.setBody(590, 6850);
+		car1.getInfoAboutCar();
+
+	</script>
+</body>
+</html>
